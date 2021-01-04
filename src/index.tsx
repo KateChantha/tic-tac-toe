@@ -2,7 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function Square(props) {
+interface SquareProps {
+  onClick(): void;
+  // value: string | null;
+  value: 'X' | 'O' | null; // more explicit
+}
+
+const Square: React.FC <SquareProps> = props => {
   return (
     <button className="square" onClick={props.onClick}>
       {props.value}
@@ -57,6 +63,10 @@ class Game extends React.Component {
     };
   }
 
+  /**
+   * @param i 
+   * @return nothing
+   */
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
